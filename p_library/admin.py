@@ -10,7 +10,7 @@ class BookAdmin(admin.ModelAdmin):
         return obj.author.full_name
     list_filter = ("title",)
     list_display = ('title', 'author_full_name')
-    fields = ('ISBN', 'title', 'description', 'year_release', 'author', 'price'  )
+    fields = ('ISBN', 'title', 'description', 'year_release', 'author', 'price', 'publisher')
     
     pass 
 
@@ -21,5 +21,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(PublishingHouse)
 class PublisherAdmin(admin.ModelAdmin):
+    list_filter = ("company_name",)
+    list_display = ('company_name', 'city')
     pass
 

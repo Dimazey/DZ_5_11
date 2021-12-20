@@ -25,3 +25,7 @@ class PublisherAdmin(admin.ModelAdmin):
     list_display = ('company_name', 'city')
     pass
 
+@admin.register(Book, PublishingHouse)
+class BookPublisherAdmin(admin.ModelAdmin):
+    list_display = ('ISBN', 'title', 'description', 'year_release', 'author', "company_name",)
+

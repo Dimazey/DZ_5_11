@@ -11,21 +11,25 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ("title",)
     list_display = ('title', 'author_full_name')
     fields = ('ISBN', 'title', 'description', 'year_release', 'author', 'price', 'publisher')
-    
-    pass 
+    pass
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_filter = ("full_name",)
     pass
 
+class BookInline(admin.TabularInline):
+    model = Book
+    fields = ('ISBN', 'title', 'year_release', 'author')
+    extra = 0
+
 @admin.register(PublishingHouse)
 class PublisherAdmin(admin.ModelAdmin):
     list_filter = ("company_name",)
     list_display = ('company_name', 'city')
+    inlines = [
+        BookInline,
+    ]
     pass
 
-@admin.register(Book, PublishingHouse)
-class BookPublisherAdmin(admin.ModelAdmin):
-    list_display = ('ISBN', 'title', 'description', 'year_release', 'author', "company_name",)
 

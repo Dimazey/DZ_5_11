@@ -33,4 +33,3 @@ class Book(models.Model):
         return f"{self.title}"
 
 
-

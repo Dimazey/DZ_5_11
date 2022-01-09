@@ -9,31 +9,26 @@
 
 </head>
 <body>
-
+<h1>{{ title }}</h1>
     <ul>
         {% for key, value in books.items %}
-        <h3>{{ key }}</h3>
-            {% for book in value %}
-            <li><h5>{{ book.title }}<h5> Год издания: {{ book.year_release }}<br> Автор: {{ book.author.full_name }}</li>
-            {% endfor %}
-
+            <li>
+            <h2>{{ key }}</h2>
+                <ul>
+                    {% for book in value %}
+                        <li>
+                            <h3>{{ book.title }}<h3>
+                            <p>
+                                Автор: {{ book.author.full_name }}<br>
+                                Год издания: {{ book.year_release }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
         {% endfor %}
     </ul>
-     <div class="container">
-         <div class="row">
-            <div class="col">
-            <h3>{{ title }}</h3>
-            </div>
-         </div>
-  <div class="row">
-    <div class="col">
-      Column
-    </div>
-    <div class="col">
-      Column
-    </div>
-  </div>
-</div>
+
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

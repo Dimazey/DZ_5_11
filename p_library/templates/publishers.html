@@ -6,29 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 
 </head>
 <body>
 <h1>{{ title }}</h1>
-    <ul>
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+     <ul>
         {% for key, value in books.items %}
             <li>
-            <h2>{{ key }}</h2>
-                <ul>
-                    {% for book in value %}
-                        <li>
-                            <h3>{{ book.title }}<h3>
-                            <p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        {{ key }}
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                        <ul>
+                            {% for book in value %}
+
+                            <li>
+                                <h3>{{ book.title }}</h3>
+                                <p class="book_data">
                                 Автор: {{ book.author.full_name }}<br>
                                 Год издания: {{ book.year_release }}
-                            </p>
-                        </li>
-                    {% endfor %}
-                </ul>
+                                </p>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+                    </div>
+                </div>
             </li>
         {% endfor %}
-    </ul>
-
+     </ul>
+</div>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

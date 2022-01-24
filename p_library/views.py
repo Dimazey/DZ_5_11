@@ -57,10 +57,10 @@ def book_decrement(request):
 
 def publishers(request):
     template = loader.get_template('publishers.html')
-    publishers = PublishingHouse.objects.all()
+    publishers = PublishingHouse.objects.all().order_by('company_name')
     books_by_publisher = {}
     for publish_comp in publishers:
-        books_by_publisher[publish_comp.company_name] = Book.objects.filter(publisher=publish_comp)
+        books_by_publisher[publish_comp.company_name] = Book.objects.filter(publisher=publish_comp).order_by('title')
 
     publisher_books_data = {
             "title": "СПИСОК КНИГ ПО ИЗДАТЕЛЬСТВАМ",

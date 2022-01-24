@@ -17,12 +17,12 @@
         {% for key, value in books.items %}
             <li>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    <h2 class="accordion-header" id="panelsStayOpen-heading{{ forloop.counter }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-{{ forloop.counter }}" aria-expanded="true" aria-controls="panelsStayOpen-{{ forloop.counter }}">
                         {{ key }}
                         </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div id="panelsStayOpen-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-{{ forloop.counter }}">
                         <div class="accordion-body">
                         <ul>
                             {% for book in value %}

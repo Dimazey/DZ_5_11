@@ -4,20 +4,22 @@ import uuid
 # Create your models here.
 
 class Author(models.Model):
+#    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     full_name = models.TextField()
     birth_year = models.SmallIntegerField()
     country = models.CharField(max_length=2)
-
     def __str__(self):
         return f"{self.full_name}"
 
 class PublishingHouse(models.Model):
+#    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     company_name = models.TextField()
     city = models.TextField()
     def __str__(self):
         return f"{self.company_name}"
 
 class Book(models.Model):
+#    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ISBN = models.CharField(max_length=13)
     title = models.TextField()
     description = models.TextField()

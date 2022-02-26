@@ -21,9 +21,8 @@ def index(request):
     template=loader.get_template('index.html')
     books = Book.objects.all()
     biblio_data={
-    "title":"мою библиотеку", 
-    "books":books,
-#    "my_list": [1,2,3,4,5],
+        "title": "мою библиотеку",
+        "books": books,
     }
     return HttpResponse(template.render(biblio_data, request))
 
@@ -53,11 +52,11 @@ def book_decrement(request):
             return redirect('/index/')
         if book.copy_count < 1:
             book.copy_count = 0
-        else: 
+        else:
             book.copy_count -= 1
         book.save()
         return redirect('/index/')
-    else: 
+    else:
         return redirect('/index/')
 
 def publishers(request):

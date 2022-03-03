@@ -21,8 +21,9 @@ from p_library.views import AuthorEdit, AuthorList, author_create_many, books_au
 add_name = 'p_library'
 urlpatterns = [
     path('admin/', admin.site.urls),# admin 12345678
-    path('',views.books_list),
+    path('', views.index),
     path('index/', views.index),
+    path('books/', views.books),
     path('index/book_increment/', views.book_increment),
     path('index/book_decrement/', views.book_decrement),
     path('publishers/', views.publishers),
@@ -31,3 +32,4 @@ urlpatterns = [
     path('author/create_many', author_create_many, name='author_create_many'),
     path('author_book/create_many', books_authors_create_many, name='author_book_create_many')
 ]
+

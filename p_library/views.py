@@ -10,6 +10,14 @@ from django.http.response import HttpResponseRedirect
 
 # Create your views here.
 
+def index(request):
+    template = loader.get_template('index.html')
+    index_data = {
+        "title": 'Главная страница',
+    }
+    return HttpResponse(template.render(index_data,request))
+
+
 def books_list(request):
     books=Book.objects.all()
     book_names=[]

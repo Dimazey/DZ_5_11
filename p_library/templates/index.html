@@ -3,40 +3,19 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %} {{ title }} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
 </head>
 <body>
-
-    <h1>Добро пожаловать в  {{ title }}. </h1>
-    <h3>Здесь собрано {{ books|length }} книг из моей библиотеки</h3>
-    <table class="table table-success table-striped">
-        {% for book in books %}
-        <tr>
-            <td> {{ forloop.counter }} </td>
-            <td> {{ book.title }}</td>
-            <td> {{ book.ISBN }} </td>
-            <td> {{ book.description }}</td>
-            <td> {{ book.year_release }} </td>
-            <td> {{ book.author.full_name }}</td>
-            <td> {{ book.author.country }} </td>
-            <td> {{ book.copy_count }} </td>
-            <td><form action="/index/book_increment/" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value="{{ book.id }}"/>
-                    <input  type="submit" value="Увеличить количество" class="btn btn-outline-info btn-sm"/>
-                </form>
-                <form action="/index/book_decrement/" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value="{{ book.id }}"/>
-                    <input type="submit" value="Уменьшить количество" class="btn btn-outline-info btn-sm"/>
-                </form>
-
-             </td>
-        </tr>
-        {% endfor %}
-    </table>
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<nav class="nav nav-tabs">
+            <a class="nav-link" href="../index/" tabindex="-1">Главная</a>
+            <a class="nav-link" href="../books/">Книги</a>
+            <a class="nav-link" href="../publishers/">Издательства</a>
+            <a class="nav-link" href="../admin/p_library/publishinghouse/add/">Добавить издательство</a>
+            <a class="nav-link" href="../admin/p_library/book/add/">Добавить книгу</a>
+            <a class="nav-link" href="../author/create">Добавить автора</a>
+            <a class="nav-link" href="../author_book/create_many">Добавить несколько книг и авторов</a>
+        </nav>
+ {% block content %}{% endblock %}
 </body>
 </html>

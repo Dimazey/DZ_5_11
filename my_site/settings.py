@@ -121,3 +121,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 CSRF_TRUSTED_ORIGINS = ["https://calm-sea-40509.herokuapp.com"]
 
+
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from p_library.models import Book, Author, PublishingHouse
+from p_library.models import Book, Author, PublishingHouse, Friend, BooksIssued
 
 # Register your models here.
 
@@ -31,5 +31,28 @@ class PublisherAdmin(admin.ModelAdmin):
         BookInline,
     ]
     pass
+
+class BookToFriend(admin.TabularInline):
+    model = BooksIssued
+    fields = ('books', 'date_delivery', 'date_return')
+    extra = 0
+
+@admin.register(Friend)
+class FriendAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    inlines = [BookToFriend,]
+    #list_filter = ('friend_name')
+    pass
+
+@admin.register(BooksIssued)
+class IssuedAdmin(admin.ModelAdmin):
+    list_display =('books', 'friend', 'date_delivery', 'date_return')
+    list_filter = ('friend', 'books')
+    pass
+class BookToFriend(admin.TabularInline):
+    model = BooksIssued
+    fields = ('books')
+    extra = 0
+
 
 

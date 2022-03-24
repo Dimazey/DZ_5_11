@@ -34,4 +34,17 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+class Friend(models.Model):
+    name = models.TextField(max_length=256, verbose_name='friend_name', null=True, blank=True)
+    books = models.ManyToManyField(Book, verbose_name='friend_books', through='BooksIssued', null=True, blank=True)
+    def __str__(self):
+        return f"{self.name}"
+
+class BooksIssued(models.Model):
+    books = models.ForeignKey(Book, on_delete=models.CASCADE)
+    friend = models.ForeignKey(Friend, on_delete=models.CASCADE)
+    date_delivery = models.DateField(null=True)
+    date_return = models.DateField(null=True, blank=True)
+    def __str__(self):
+        return f"{self.books}"
 
